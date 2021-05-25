@@ -1,49 +1,63 @@
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class BirdSanctuaryManager {
-    //List<Bird> birdList = new ArrayList<Bird>();
     Set<Bird> birdList = new HashSet<>();
 
-    public void add(Bird bird) {
-        birdList.add(bird);
-        bird.incrementCount();
+    static BirdSanctuaryManager instance;
+
+    static BirdSanctuaryManager getInstance() {
+        if (instance == null) {
+            instance = new BirdSanctuaryManager();
+        }
+        return instance;
     }
 
-    public void remove(Bird bird) {
-        birdList.remove(bird);
-        bird.decrementCount();
+    public BirdSanctuaryManager() {
+
+    }
+
+    public void add(Bird bird) {
+        try {
+            if (bird == null) {
+                throw new BirdSancturyException("Bird Not exist");
+            } else {
+                birdList.add(bird);
+                bird.incrementCount();
+            }
+        }
+        catch (BirdSancturyException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void remove(Bird bird) throws BirdSancturyException {
+        if (birdList.contains(bird)) {
+            birdList.remove(bird);
+            bird.decrementCount();
+        } else {
+            throw new BirdSancturyException("did not find bird");
+        }
     }
 
     public int getAllCount() {
         return birdList.size();
     }
 
-    public void print() {
-        for (Bird bird : birdList) {
-            bird.eat();
-            if (bird instanceof Flyable) {
-                ((Flyable) bird).fly();
-            }
-            if (bird instanceof Swimmable) {
-                ((Swimmable) bird).swim();
-            }
+    public void printFlyable() {
+        birdList.stream().filter(bird -> bird instanceof Flyable)
+                .forEach(bird -> ((Flyable)bird).fly());
         }
-            //{
-            //if (bird instanceof Parrot) {
-              //  ((Parrot) bird).eat();
-                //((Parrot) bird).fly();
-                //((Parrot) bird).swim();
-            //}
-            //if (bird instanceof Duck) {
-              //  ((Duck) bird).eat();
-                //((Duck) bird).fly();
-                //((Duck) bird).swim();
-            //}
-            //if (bird instanceof Penguine) {
-              //  ((Penguine) bird).eat();
-                //((Penguine) bird).swim();
-            //}
+
+    public void printSwimmable() {
+        birdList.stream().filter(bird -> bird instanceof Swimmable)
+                .forEach(bird -> ((Swimmable)bird).swim());
+    }
+
+    public void printEatable() {
+            birdList.stream().forEach(Bird::eat);
+    }
+
+    public static class getInstance extends BirdSanctuaryManager {
     }
 }
