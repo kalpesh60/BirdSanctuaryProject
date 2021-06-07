@@ -3,6 +3,7 @@ public class Crow extends Bird implements Flyable {
 
     public Crow(String id) {
         this.id = id;
+        this.color = "black";
     }
 
     public void eat() {

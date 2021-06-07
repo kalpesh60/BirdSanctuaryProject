@@ -3,6 +3,7 @@ public class Penguine extends Bird implements Swimmable {
 
     public Penguine(String id) {
         this.id = id;
+        this.color = "black&white";
     }
 
     @Override

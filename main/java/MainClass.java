@@ -29,6 +29,9 @@ public class MainClass {
         birdSanctuaryManager.printSwimmable();
         birdSanctuaryManager.printEatable();
 
+        birdSanctuaryManager.saveBirdsInFile();
+        birdSanctuaryManager.PrintBirdColor();
+
         System.out.println("count of parrot=" +parrot.getCount());
         System.out.println("count of penguines=" +penguine.getCount());
         System.out.println("count of ducks=" +duck.getCount());

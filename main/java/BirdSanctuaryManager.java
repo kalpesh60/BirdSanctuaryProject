@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +42,24 @@ public class BirdSanctuaryManager {
             bird.decrementCount();
         } else {
             throw new BirdSancturyException("did not find bird");
+        }
+    }
+
+    public void PrintBirdColor () {
+        birdList.toString();
+        System.out.println(birdList);
+    }
+
+    public void saveBirdsInFile() {
+        StringBuffer birdBuffer = new StringBuffer();
+        birdList.forEach(bird -> {
+            String birdDataString = bird.toString().concat("\n");
+            birdBuffer.append(birdDataString);
+        });
+        try {
+            Files.write(Paths.get("bird.txt"), birdBuffer.toString().getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

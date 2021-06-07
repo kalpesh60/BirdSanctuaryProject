@@ -3,6 +3,7 @@ public class Duck extends Bird implements Flyable, Swimmable {
 
     public Duck(String id) {
         this.id = id;
+        this.color = "white";
     }
 
     @Override

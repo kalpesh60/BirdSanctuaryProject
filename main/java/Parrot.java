@@ -3,6 +3,7 @@ public class Parrot extends Bird implements Flyable {
 
     public Parrot(String id) {
         this.id = id;
+        this.color = "green";
     }
 
     @Override

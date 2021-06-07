@@ -1,0 +1,6 @@
+Bird{id='p1', color='green'}
+Bird{id='p2', color='green'}
+Bird{id='p3', color='green'}
+Bird{id='c', color='black'}
+Bird{id='d', color='white'}
+Bird{id='pg', color='black&white'}
